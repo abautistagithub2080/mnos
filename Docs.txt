@@ -1,0 +1,91 @@
+                    for (int i = 0; i < routineParams.Length; i++)
+                    {
+                        U2Parameter param = new U2Parameter();
+                        param.Direction = ParameterDirection.InputOutput;
+                        param.Value = routineParams[i].Split(':')[1];
+                        param.ParameterName = routineParams[i].Split(':')[0];
+                        command.Parameters.Add(param);
+                    }
+
+
+armando.bautista@latinoseguros.com.mx
+4rm4ndoL0p3z* <-
+
+
+https://stackoverflow.com/questions/12385109/deleting-all-controls-on-a-winform-with-a-foreach-loop?rq=1
+
+https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-add-to-or-remove-from-a-collection-of-controls-at-run-time
+
+https://stackoverflow.com/questions/1511047/how-do-i-dispose-all-of-the-controls-in-a-panel-or-form-at-once-c-sharp
+
+
+https://stackoverrun.com/es/q/4118196
+
+http://ltuttini.blogspot.com/2013/02/winform-instanciar-form-conociendo-su.html
+
+http://www.mobzystems.com/code/events-in-csharp-and-vbnet/
+
+https://stackoverflow.com/questions/47275935/check-if-tab-exists-in-tabcontrol-c-sharp/47275965
+
+--> Aqui me quede
+https://social.msdn.microsoft.com/Forums/Windows/en-US/8f540d04-aa92-4847-9314-7fe41bc56762/adding-a-close-tab-button-x-to-tabcontrol?forum=winforms
+--> Aqui me quede
+
+-->Pendiente
+tabcontrol1 add cross close
+https://www.codeproject.com/Articles/20050/FireFox-like-Tab-Control
+
+-->Pendiente
+
+
+https://stackoverflow.com/questions/21596822/how-to-add-controls-into-a-new-tab-page-which-is-dynamically-created
+
+
+https://social.msdn.microsoft.com/Forums/vstudio/en-US/40ed79d9-13f3-4d67-bd23-d2a80c2868f4/c-how-do-i-create-a-new-tab-in-tab-control-with-a-new-instance-of-a-panel-on-it?forum=csharpgeneral
+
+
+Para el Officr
+6QFDX-PYH2G-PPYFD-C7RJM-BBKQ8  BDD3G-XM7FB-BD2HM-YK63V-VQFDK   HXJQ4-VT6T8-7YPRK-R2HQG-CYPPY  6R7J3-K4CB9-PG7BR-TVDBG-YPGBD   4DDJ8-DM67D-GJPT2-32H93-9MMWK  82DB6-BXG6H-QKBT6-3G42H-PPWM3  D34M3-3279D-HHPB3-DQPPQ-JHHFX  24PR2-JW928-QPKTK-CPD26-RYV3C  4JPCP-DJF9V-WX7PT-B9WX2-R47C6  7TF8R-933DG-MCBQR-TXPM7-G4JRM  6R7J3-K4CB9-PG7BR-TVDBG-YPGBD  VYBBJ-TRJPB-QFQRF-QFT4D-H3GVB
+
+-->Para Revisar y posteriormente eliminar
+
+https://www.smarterasp.net/free_trial
+
+Teléfono José Luis García
+5652 – 2791
+55-1826-6713
+
+-->Para Revisar y posteriormente eliminar
+
+
+
+
+
+
+using System.Runtime.InteropServices;
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct SHFILEINFO
+        {
+            public IntPtr hIcon;
+            public int iIcon;
+            public uint dwAttributes;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            public string szDisplayName;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+            public string szTypeName;
+        };
+
+
+
+            //-------------------------------------------------------------------
+            //tps://stackoverflow.com/questions/1437382/get-file-type-in-net
+            //Form6.SHFILEINFO(WFile, dwFileAttributes, ref info, (uint)Marshal.SizeOf(info), uFlags);
+            //Console.WriteLine(info.szTypeName);
+
+            //-------------------------------------------------------------------
+
+
+

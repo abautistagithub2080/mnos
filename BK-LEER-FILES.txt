@@ -1,0 +1,29 @@
+        private void btnIni_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(textBox1.Text,"AAA");
+            string WPath = "C:\\Users\\Armando\\Documents\\01-BYLOS\\ROCIO"; //\\IconMario.txt
+
+            DirectoryInfo oDir = new DirectoryInfo(WPath);
+            foreach (FileInfo file in oDir.GetFiles()) //SPGetMail(file.Name, WPath);
+            {
+                Console.WriteLine(file.Name);
+            }
+            oDir = null;
+
+            //SPRdFile(PP);
+        }
+
+        private void SPRdFile(string WFile)
+        {
+            StreamReader oRead = new StreamReader(WFile); string WLine = ""; ArrayList aTxt = new ArrayList();
+            String WXML = @"";
+            while (WLine != null)
+            {
+                WLine = oRead.ReadLine();
+                if (WLine != null) WXML = WXML + WLine;
+            }
+            oRead.Close(); oRead.Dispose(); oRead = null;
+
+            return;
+
+        }

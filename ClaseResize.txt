@@ -1,0 +1,79 @@
+http://www.elguille.info/NET/WebServices/deVBaCS_web.aspx
+
+
+public class Control_Resizer{
+ 
+ 
+ 
+    public var SortedList alCtrl = new SortedList();
+    public var SortedList alctrlWidth = new SortedList();
+    public var SortedList alctrlHeigth = new SortedList();
+    public var SortedList alctrlPosX = new SortedList();
+    public var SortedList alctrlPosY = new SortedList();
+    public var SortedList alctrlFontSiz = new SortedList();
+ 
+    /* Declaración del delegado para este evento */
+public delegate void resizeEventHandler(Control ctrl, float ctrlW, float ctrlH, float ctrlPosX, float ctrlPosy, int fntSize);
+public event resizeEventHandler resize /* TODO: Comprobar si es el delegado correcto */ ;
+    internal void createConst(Control ctrl, float ctrlWidth, float ctrlHeigth, float ctrlPosX, float ctrlPosY, int ctrlFontSiz, int i) {
+ 
+ 
+ 
+        if( ! alCtrl(i) == null ) return;
+ 
+        alCtrl.Add(i, ctrl);
+        alctrlWidth.Add(i, ctrlWidth);
+        alctrlHeigth.Add(i, ctrlHeigth);
+        alctrlPosX.Add(i, ctrlPosX);
+        alctrlPosY.Add(i, ctrlPosY);
+        alctrlFontSiz.Add(i, ctrlFontSiz);
+ 
+ 
+ 
+ 
+    }  
+ 
+    internal void resizeCtrl(float origformX, float origformY, float formX, float formY, int i) {
+ 
+ 
+ 
+        Control ctrl;
+        ctrl = ((Control)alCtrl[i]);
+ 
+        float ActCtrlW;
+        ActCtrlW = (formX * alctrlWidth[i]) / origformX;
+ 
+        float ActCtrlH;
+        ActCtrlH = (formY * alctrlHeigth[i]) / origformY;
+ 
+        float ActCtrlPosX;
+        ActCtrlPosX = (formX * alctrlPosX(i)) / origformX;
+ 
+        float ActCtrlPosY;
+        ActCtrlPosY = (formY * alctrlPosY(i)) / origformY;
+ 
+        int ActCtrlFntSize;
+        ActCtrlFntSize = (formY * alctrlFontSiz[i]) / origformY;
+ 
+ 
+        if( ctrl == null ) return;
+ 
+        if( resize != null ) resize(ctrl, ActCtrlW, ActCtrlH, ActCtrlPosX, ActCtrlPosY, ActCtrlFntSize); /* Si hay que lanzar el evento */;
+    }  
+    ///PROCEDURE DA INSERIRE NEL FORM CHIAMANTE PER COSTRUIRE GLI ARRAY DEI CONTROLLI!!!
+    //Dim i As Integer
+    //Dim ctrl As Control
+ 
+ 
+    //For Each ctrl In Me.Controls
+ 
+    //i += 1
+ 
+    // cr.createConst(ctrl, ctrl.Width, ctrl.Height, ctrl.Location.X, ctrl.Location.Y, ctrl.Font.Size, i)
+ 
+ 
+ 
+ 
+ 
+ 
+}

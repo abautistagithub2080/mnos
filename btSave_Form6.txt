@@ -1,0 +1,52 @@
+        public OleDbCommand FNCMD(string SQL)
+        {
+            //OleDbConnection DB = new OleDbConnection(WDB); DB.Open(); OleDbCommand cmd = DB.CreateCommand(); cmd.CommandText = WSP;
+            DevRootDB();
+            //DB = new OleDbConnection(WDB); DB.CreateCommand(); OleDbCommand cmd = new OleDbCommand(SQL, DB); DB.Open(); // -->OK
+            DB = new OleDbConnection(WDB); DB.Open(); cmd = DB.CreateCommand(); cmd.CommandText = SQL;
+            return cmd;
+        
+
+
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Tools oFN = new Tools();
+            string WNomFile = txtNomFile.Text;
+            string WDesc = txtDesc.Text;
+            oFN = null;
+            string DFecha = DateTime.Now.ToString();
+            if (WNomFile == "" || WNomFile.Length == 0) return;
+            string SQL = "";
+            string WRuta = Application.StartupPath;
+            string WDB = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + WRuta + "\\DBSP.mdb; Jet OLEDB:Database Password=D47l!3015#+;";
+
+
+
+            string WRutaX = txtRuta.Text;
+
+            FileStream fs = new FileStream(@WRutaX, FileMode.Open, FileAccess.Read);
+            byte[] b = new byte[fs.Length - 1 + 1];
+            fs.Read(b, 0, b.Length);
+            fs.Close(); fs.Dispose(); fs = null;
+
+            OleDbConnection DB = new OleDbConnection(WDB); DB.Open();
+            OleDbCommand cmd = DB.CreateCommand();
+            SQL = "INSERT INTO tblFiles(NombreFile, Descripcion, Fecha, File) VALUES (@NombreFile, @Descr, @Fecha, @File)";
+            cmd.CommandText = SQL;
+            cmd.Parameters.AddWithValue("@NombreFile", WNomFile);
+            cmd.Parameters.AddWithValue("@Descr", txtDesc.Text);
+            cmd.Parameters.AddWithValue("@Fecha", DFecha);
+            OleDbParameter P = new OleDbParameter("@File", OleDbType.LongVarBinary, b.Length, ParameterDirection.Input, false, 0, 0, null, DataRowVersion.Current, b);
+            cmd.Parameters.Add(P);
+            cmd.ExecuteNonQuery();
+            P = null;
+            Array.Clear(b, 0, b.Length); b = null;
+            cmd.Dispose(); cmd = null;
+            DB.Close(); DB.Dispose(); DB = null;
+
+
+            SQL = "SELECT TOP 1 '0' AS IdFiles, '  ----NUEVO----' AS NombreFile FROM tblFiles UNION SELECT IdFiles, NombreFile FROM tblFiles ORDER BY IdFiles ASC;"; oTool.FillCbx(SQL, "IdFiles", "NombreFile", ref cbxFiles); RSQL = SQL;
+            LimpiaTxt();              
+        }

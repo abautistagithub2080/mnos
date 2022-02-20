@@ -1,0 +1,94 @@
+
+/* Para Creae una Base de Datos */
+CREATE DATABASE DemoDKT;
+
+
+USE DemoDKT;
+CREATE TABLE tblContacto (
+IdContacto int IDENTITY(1,1) PRIMARY KEY,
+NombreCorto nvarchar(255),
+Nombre nvarchar(255),
+Paterno nvarchar(255), 
+Materno nvarchar(255),
+Email nvarchar(255),
+Telefono nvarchar(255),
+Celular nvarchar(255),
+Descripcion ntext,
+Fecha DateTime
+);
+
+
+CREATE TABLE tblContactoSP(
+IdContacto int IDENTITY(1,1) PRIMARY KEY,
+NombreCorto nvarchar(255),
+Nombre nvarchar(255),
+Celular nvarchar(255),
+Descripcion ntext ,
+Fecha DateTime
+);
+
+CREATE TABLE tblContactoUsr(
+IdContactoUsr int IDENTITY(1,1) PRIMARY KEY,
+Usuario nvarchar(255),
+Contrasenia nvarchar(255), 
+Cuenta nvarchar(255), 
+Descripcion ntext,
+Fecha DateTime
+);
+
+CREATE TABLE tblMusica(
+IdMsc int IDENTITY(1,1) PRIMARY KEY,
+Nombre nvarchar(255), 
+Link nvarchar(255), 
+Descrip ntext,
+Fecha DateTime
+);
+
+INSERT INTO tblMusica(Nombre, Link, Descrip, Fecha) VALUES('','Link', 'Descrip', GETDATE());
+
+CREATE TABLE tblFiles(
+IdFiles int IDENTITY(1,1) PRIMARY KEY,
+NombreFile nvarchar(255), 
+IdMsc int,
+Descripcion ntext, 
+Files varbinary(MAX),
+Fecha DateTime
+);
+
+
+CREATE TABLE tblMenus(
+IdMenu int IDENTITY(1,1) PRIMARY KEY,
+Nombre nvarchar(255),
+Descripcion ntext
+);
+
+INSERT INTO tblMenus(Nombre) VALUES('Nueva Pestaña');
+INSERT INTO tblMenus(Nombre) VALUES('Root');
+
+CREATE TABLE tblSubMenus(
+IdSubMenus int IDENTITY(1,1) PRIMARY KEY,
+IdMenu int,
+SubMenus nvarchar(255),
+Forma nvarchar(255),
+NombreEspacio nvarchar(255)
+);
+
+INSERT INTO tblSubMenus(IdMenu, SubMenus, Forma, NombreEspacio) VALUES(2,'Manager Files', 'Form2', 'Demo1');
+INSERT INTO tblSubMenus(IdMenu, SubMenus, Forma, NombreEspacio) VALUES(2,'User CONTRA', 'Form3', '_01_SP_BG');
+INSERT INTO tblSubMenus(IdMenu, SubMenus, Forma, NombreEspacio) VALUES(2,'Contactos', 'Form4', '_01_SP_BG');
+INSERT INTO tblSubMenus(IdMenu, SubMenus, Forma, NombreEspacio) VALUES(2,'Contactos SP', 'Form5', '_01_SP_BG');
+INSERT INTO tblSubMenus(IdMenu, SubMenus, Forma, NombreEspacio) VALUES(2,'Guardar Archivos', 'Form6', '_01_SP_BG');
+
+--https://stackoverflow.com/questions/972273/microsoft-access-datetime-default-now-via-sql
+--http://www.sqlusa.com/bestpractices/datetimeconversion/
+/*
+DROP TABLE tblContacto 
+DROP TABLE tblContactoSP
+DROP TABLE tblContactoUsr
+DROP TABLE tblMusica
+DROP TABLE tblFiles
+DROP TABLE tblMenus
+DROP TABLE tblSubMenus
+*/
+
+--Provider=sqloledb;Data Source=Lenovo-PC;Initial Catalog=Demo;User Id=sa;Password=123456;
